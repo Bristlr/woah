@@ -1,0 +1,22 @@
+{
+  "name": "bristlr",
+  "version": "0.1.0",
+  "dependencies": {
+    "express": "4.*",
+    "ejs": "*",
+    "morgan": "*",
+    "mongojs": "0.x",
+    "bristlr-logger": "git+https://github.com/Bristlr/logger.git"
+  },
+  "devDependencies": {
+    "zombie": "3.*",
+    "mocha": "*",
+    "chai": "*",
+    "jshint": "*",
+    "request" : "*",
+    "get": "*"
+  },
+  "engines": {
+    "node": "8.x"
+  }
+}

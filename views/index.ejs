@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html class="full" lang="en">
+<!-- Make sure the <html> tag is set to the .full CSS class. Change the background image in the full.css file. -->
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Connecting those with beards to those who want to stroke beards. The beard-centric dating site and social network.">
+    <meta name="author" content="Bristlr">
+
+    <!-- Icons -->
+        <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png">
+        <link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114x114.png">
+        <link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png">
+        <link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144x144.png">
+        <link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png">
+        <link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon-120x120.png">
+        <link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon-76x76.png">
+        <link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152x152.png">
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png">
+        <link rel="icon" type="image/png" href="/favicon-192x192.png" sizes="192x192">
+        <link rel="icon" type="image/png" href="/favicon-160x160.png" sizes="160x160">
+        <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
+        <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+        <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+
+    <title>Bristlr - Beard dating at its finest</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- jQuery Version 1.11.0 -->
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+
+	<!-- Bristlr Core CSS -->
+	<link href="https://static.bristlr.com/css/main.css" rel="stylesheet">
+
+	<!-- Bootstrap Core JavaScript -->
+	<script type="text/javascript" src="https://static.bristlr.com/js/bootstrap.min.js"></script>
+
+    <style>
+
+    </style>
+
+
+</head>
+
+<body class="has-background">
+	
+<!-- Page Content -->
+<div class="container">
+	<div class="row">
+		<div class="col-md-offset-2 col-md-8 col-sm-12">
+
+			<h1 style="text-align: center;">
+				<a href="http://www.bristlr.com"><img style="max-width: 200px;" src="https://static.bristlr.com/img/BristlrTransparent.png" /></a>
+			</h1>
+			
+			<p style="font-size:24px; text-align: center">Connecting those with beards <br /> to those who want to stroke beards.</p>
+
+			<div class="panel panel-default">
+				<p style="text-align: center; padding-top: 1em;">Total number of users</p> 
+				<p style="text-align:center; font-size: 10em; font-weight: bold" class="users hidden-xs">0</p>
+				<p style="text-align:center; font-size: 4em; font-weight: bold" class="users visible-xs-block">0</p>
+			</div>
+
+			<div class="panel panel-default">
+				<p style="text-align: center; padding-top: 1em;">Total distance of beard hair grown since Bristlr launched</p> 
+				
+				<p style="text-align:center; font-size: 40px; font-weight: bold" class="hidden-xs">
+					<span class="hairGrowthF"> </span> feet
+				</p>
+				<p style="text-align:center; font-size: 30px;" class="hidden-xs">
+					(<span class="hairGrowthM"> </span> meters)
+				</p>
+
+				<p style="text-align:center; font-size: 16px; font-weight: bold" class="visible-xs-block">
+					<span class="hairGrowthF"> </span> feet
+				</p>
+				<p style="text-align:center; font-size: 16px;" class="visible-xs-block">
+					(<span class="hairGrowthM"> </span> meters)
+				</p>
+
+			</div>
+
+
+			<div class="row">
+				<div class="col-md-offset-2 col-md-8 col-sm-12">
+					<div class="row">
+						<div class="col-xs-6" style="text-align: center">
+							<a href="https://play.google.com/store/apps/details?id=com.bristlr.app">
+							  <img alt="Android app on Google Play"
+							       src="https://developer.android.com/images/brand/en_app_rgb_wo_45.png" style="height: 40px"/>
+							</a>
+						</div>
+						<div class="col-xs-6" style="text-align: center">
+							<a href="https://geo.itunes.apple.com/gb/app/bristlr-free-dating-for-beard/id943951836?mt=8&uo=6" target="itunes_store" style="display:inline-block;overflow:hidden;background:url(http://linkmaker.itunes.apple.com/images/badges/en-us/badge_appstore-lrg.png) no-repeat;width:135px;height:40px;@media only screen{background-image:url(http://linkmaker.itunes.apple.com/images/badges/en-us/badge_appstore-lrg.svg);}"></a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+
+var existingNumberOfUsers = 0;
+
+function reloadCount() {
+	$.get("/count", function(newNumberOfUsers){
+
+		newNumberOfUsers = parseInt(newNumberOfUsers);
+
+		if (newNumberOfUsers > existingNumberOfUsers) {
+			$(".users").hide().html(commaSeparateNumber(newNumberOfUsers));
+			$(".users").fadeIn(1500);
+
+			existingNumberOfUsers = newNumberOfUsers;
+		}
+
+		setTimeout(reloadCount, 3000);
+	});	
+}
+
+reloadCount();
+
+function calculateTotalBeardLength() {
+
+	var proportionOfBeardedUsers = 0.497; 						// Internal metrics as of 16th August 2015
+	var averageNumberOfHairsInABeard = 11000; 					// http://www.economist.com/node/2281888
+	var mmHairGrowthPerMonth = 12.7; 							//http://www.hairfinder.com/hairquestions/facialhairgrowth.htm
+
+	var totalNumberOfBeards = existingNumberOfUsers * proportionOfBeardedUsers;
+	var totalNumberOfBeardHairs = totalNumberOfBeards * averageNumberOfHairsInABeard;
+	var msHairGrowthPerMS = mmHairGrowthPerMonth / (1000 * 60 * 60 * 24 * 31);
+	var msSincelaunch = new Date().getTime() - 1414022400000 	// Bristlr launched on the 23rd October 2014
+	
+	var totalGrowthSinceLaunch = totalNumberOfBeardHairs * msHairGrowthPerMS * msSincelaunch;
+
+	var totalGrowthSinceLaunchM = totalGrowthSinceLaunch / 1000;
+	var totalGrowthSinceLaunchMRounded = parseFloat(totalGrowthSinceLaunchM).toFixed(2);
+
+	var totalGrowthSinceLaunchF = totalGrowthSinceLaunchM * 3.2808399;
+	var totalGrowthSinceLaunchFRounded = parseFloat(totalGrowthSinceLaunchF).toFixed(2);
+
+	$(".hairGrowthM").html(commaSeparateNumber(totalGrowthSinceLaunchMRounded));
+	$(".hairGrowthF").html(commaSeparateNumber(totalGrowthSinceLaunchFRounded));
+
+	setTimeout(calculateTotalBeardLength, 100);
+
+}
+
+calculateTotalBeardLength();
+
+
+
+
+function commaSeparateNumber(val) {
+	while (/(\d+)(\d{3})/.test(val.toString())){
+		val = val.toString().replace(/(\d+)(\d{3})/, '$1'+','+'$2');
+	}
+	return val;
+}
+
+</script>
+
+
+</body>
+</html>
